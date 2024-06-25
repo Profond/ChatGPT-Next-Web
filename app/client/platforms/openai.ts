@@ -30,6 +30,7 @@ import {
   getMessageImages,
   isVisionModel,
 } from "@/app/utils";
+import { NextResponse } from "next/server";
 
 export interface OpenAIListModelResponse {
   object: string;
@@ -175,7 +176,11 @@ export class ChatGPTApi implements LLMApi {
             const fetchText = remainText.slice(0, fetchCount);
             responseText += fetchText;
             remainText = remainText.slice(fetchCount);
-            options.onUpdate?.(responseText, fetchText);
+            try {
+              options.onUpdate?.(responseText, fetchText);
+            } catch (e) {
+              console.error("[Response Animation] update error", e);
+            }
           }
 
           requestAnimationFrame(animateResponseText);
