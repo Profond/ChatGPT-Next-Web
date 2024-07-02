@@ -381,13 +381,9 @@ export const useChatStore = createPersistStore(
             if (message) {
               botMessage.content = message;
             }
-            try {
-              get().updateCurrentSession((session) => {
-                session.messages = session.messages.concat();
-              });
-            } catch (e) {
-              console.log("[Chat] onUpdate: error", e);
-            }
+            get().updateCurrentSession((session) => {
+              session.messages = session.messages.concat();
+            });
           },
           onFinish(message) {
             botMessage.streaming = false;
