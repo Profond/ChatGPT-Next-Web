@@ -709,7 +709,7 @@ export function Settings() {
               checkingUpdate
                 ? Locale.Settings.Update.IsChecking
                 : hasNewVersion
-                ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
+                ? Locale.Settings.Update.FoundUpdate(remoteId ?? "已是最新版本")
                 : Locale.Settings.Update.IsLatest
             }
           >
